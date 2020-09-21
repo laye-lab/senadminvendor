@@ -2,7 +2,7 @@
 
 
 
-             @extends('layouts.template_dashbord_acceuil')
+@extends('layouts.template_dashbord_acceuil')
 
 
 @section('content')
@@ -78,78 +78,81 @@
                                 <!-- Main content -->
                                 <section class="content" style="position:relative;left:100px;">
                                     <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6 col-md-3" style="position:relative; left:10%;">
+                                              <div class="info-box">
+                                                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-clock"></i></span>
+
+                                                <div class="info-box-content">
+                                                  <span class="info-box-text">Total heure <br> mois en cour </span>
+                                                  <span class="info-box-number">
+                                                    {{$total_current_month_dr}}
+                                                    <small>heures</small>
+                                                  </span>
+                                                </div>
+                                                <!-- /.info-box-content -->
+                                              </div>
+                                              <!-- /.info-box -->
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-12 col-sm-6 col-md-3"  style="position:relative; left:25%;">
+                                              <div class="info-box mb-3">
+                                                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-clock"></i></span>
+
+                                                <div class="info-box-content">
+                                                  <span class="info-box-text">total heure année</span>
+                                                  <span class="info-box-number">
+                                                    {{$total_current_year_dr}}
+                                                    <small>heures</small>
+                                                    </span>
+                                                </div>
+                                                <!-- /.info-box-content -->
+                                              </div>
+                                              <!-- /.info-box -->
+                                            </div>
+                                            <!-- /.col -->
+
+                                            <!-- fix for small devices only -->
+
+
+                                            <!-- /.col -->
+                                          </div>
                                         <!-- Small boxes (Stat box) -->
                                         <div class="row">
                                             <a href="{{route('homeCommandeindex')}}" class="small-box-footer">
-                                            <div class="col-lg-5 col-9">
+                                            <div class="col-lg-5 col-9" style="position:relative;left:110px;" >
                                             <!-- small box -->
-
-                                            <div class="small-box bg-dark container border border-success" style="height:200px;width:350px;">
-                                                <div class="inner">
-
-
-
-                                                <h5>Commander heure supplementaire</h5>
-                                                <p class="font-italic" style="color:lightblue;">choix collaborateur  <br> choix service  <br> Saisie Commande </p>
-                                                <p></p>
+                                            <div>
+                                                <img class="small-box container border border-success"  style="height:150px;width:300px; background-color:white;"  src="{{asset('../../dist/img/commandes.png')}}" alt="">
                                                 </div>
-                                                <div class="icon">
-                                                <i  class="ion ion-bag" style="zoom:2.0;"></i>
-                                                </div>
-
                                             </div>
-                                            </div>
-
                                         </a>
 
                                         <a href="{{route('Validation')}}" class="small-box-footer">
-                                            <div class="col-lg-5 col-6" style="position:relative;left:40px;">
+                                            <div class="col-lg-5 col-6" style="position:relative;left:200px;">
                                             <!-- small box -->
-                                            <div class="small-box bg-danger container border border-success" style="height:200px;width:350px;">
-                                                <div class="inner" >
-                                                <h5 class="nav-link">Valider heure supplementaire</h5></u>
-                                                 <p class="font-italic" style="color:lightred;">Choix collaborateur <br> validation heure </p>                                                 </div>
-                                                <div class="icon">
-                                                <i class="ion ion-stats-bars" style="zoom:2.0;"></i>
+                                            <div>
+                                                <img class="small-box container border border-success"  style="height:150px;width:300px; background-color:white;"  src="{{asset('../../dist/img/valid.png')}}" alt="">
                                                 </div>
 
                                             </div>
-                                            </div>
+
                                             <!-- ./col -->
                                         </a>
+                                        </div>
 
                                         <a href="{{route('homeSaisie')}}" class="small-box-footer">
-                                            <div class="col-lg-5 col-9" style="position:relative;">
-                                            <!-- small box -->
-                                            <div class="small-box bg-secondary container border border-success" style="height:200px;width:350px;">
-                                                <div class="inner">
-                                                <h5>Saisir heure supplementaire</h5>
-                                                <p class="font-italic" style="color:lightblue;">choix collaborateur  <br> Saisie heure</p>
-                                                <p></p>
-                                                </div>
-                                                <div class="icon">
-                                                <i class="ion ion-person-add" style="zoom:2.0;"></i>
+                                            <div class="col-lg-5 col-6" style="position:relative;left:230px;">
+                                                <!-- small box -->
+                                                <div>
+                                                    <img class="small-box container border border-success"  style="height:150px;width:300px; background-color:white;"  src="{{asset('../../dist/img/saisir.png')}}" alt="">
+                                                    </div>
+
                                                 </div>
 
-                                            </div>
-                                            </div>
                                         </a>
 
-                                        <a href="">
-                                            <div class="col-lg-5 col-9" style="position:relative;top:40px;left:40px;">
-                                                <div class="small-box bg-white container border border-success" style="height:200px;width:350px;">
-                                                    <div class="inner">
-                                                    <h5>Consulter Agent</h5>
 
-                                                    <p class="font-italic" style="color:lightdark;">Consultez les agents qui peuvent faire<br> des heures supplémentaires </p>
-                                                </div>
-                                                <div class="icon">
-                                                    <i class="ion ion-pie-graph" style="zoom:2.0;" ></i>
-                                                </div>
-
-                                                </div>
-                                            </div>
-                                        </a>
                                             @break
                                             <!-- ./col -->
                                         @endif
@@ -159,58 +162,32 @@
                                 <div class="container-fluid">
                                     <!-- Small boxes (Stat box) -->
                                     <div class="row">
+                                        <a href="{{route('homeSaisie')}}" class="small-box-footer">
+                                            <div class="col-lg-5 col-6" style="position:relative;left:100px;">
+                                                <!-- small box -->
+                                                <div>
+                                                    <img class="small-box container border border-success"  style="height:150px;width:300px; background-color:white;"  src="{{asset('../../dist/img/saisir.png')}}" alt="">
+                                                    </div>
 
+                                                </div>
 
-                                        <a href="{{route('Validation')}}" class="small-box-footer">
-                                        <div class="col-lg-5 col-6" style="position:relative;left:40px;">
+                                        </a>
+
+                                    <a href="{{route('Validation')}}" class="small-box-footer">
+                                        <div class="col-lg-5 col-6" style="position:relative;left:150px;">
                                         <!-- small box -->
-                                        <div class="small-box bg-danger container border border-success" style="height:200px;width:350px;">
-                                            <div class="inner" >
-                                            <h5 class="nav-link">Valider heure supplementaire</h5></u>
-                                            <p class="font-italic" style="color:lightred;">Choix collaborateur <br> validation heure </p>                                                </div>
-                                            <div class="icon">
-                                            <i class="ion ion-stats-bars" style="zoom:2.0;"></i>
+                                        <div>
+                                            <img class="small-box container border border-success"  style="height:150px;width:300px; background-color:white;"  src="{{asset('../../dist/img/valid.png')}}" alt="">
                                             </div>
 
                                         </div>
-                                        </div>
+
                                         <!-- ./col -->
                                     </a>
-                                    <a href="{{route('homeSaisie')}}" class="small-box-footer">
-                                        <div class="col-lg-5 col-9 " style="position:relative;left:60px;">
-                                        <!-- small box -->
-                                        <div class="small-box bg-secondary container border border-success" style="height:200px;width:350px;">
-                                            <div class="inner">
-                                            <h5>Saisir heure supplementaire</h5>
-                                            <p class="font-italic" style="color:lightblue;">Saisissez les heures effectuées <br> par vos agents </p>
-                                            <p></p>
-                                            </div>
-                                            <div class="icon">
-                                            <i class="ion ion-person-add" style="zoom:2.0;"></i>
-                                            </div>
-
-                                        </div>
-                                        </div>
-                                    </a>
-
-                                    <a href="">
-
-                                            <div class="small-box bg-white container border border-success" style="height:200px;width:350px; left:60px;">
-                                                <div class="inner">
-                                                <h5>Consulter Agent</h5>
-
-                                                <p class="font-italic" style="color:lightdark;">Consultez les agents qui peuvent faire<br> des heures supplémentaires </p>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="ion ion-pie-graph" style="zoom:2.0;" ></i>
-                                            </div>
-
-                                            </div>
-                                        </div>
-                                    </a>
-
+                                    </div>
                                         @break
-                                        @endif
+                                        <!-- ./col -->
+                                    @endif
                                         @if($role->Nom === 'dto')
                                         <!-- Main content -->
                                         <center>
@@ -479,7 +456,8 @@
                                                                 <div class="small-box bg-secondary container border border-success" style="height:200px;width:350px;">
                                                                     <div class="inner">
                                                                     <h5>Saisir heure supplementaire</h5>
-                      <p class="font-italic" style="color:lightblue;">choix collaborateur  <br> Saisie heure </p>
+                                                                        <p class="font-italic" style="color:lightblue;">
+                                                                            choix collaborateur  <br> Saisie heure </p>
                                                                     <p></p>
                                                                     </div>
                                                                     <div class="icon">
@@ -511,431 +489,324 @@
                                                                 @if($role->Nom === 'drh')
                                                              <center>   <h2>Heures supplémentaires en cours de traitement</center>
 
-<section class="content" style="position:relative;">
-    <div class="container-fluid">
+                    <section class="content" style="position:relative;">
+                        <div class="container-fluid">
 
-      <div class="row" >
-        <!-- left column -->
+                        <div class="row" >
+                            <!-- left column -->
 
-        @foreach ($data as  $datas)
-
-
-    @if ($datas->statut==4)
+                            @foreach ($data_drh as  $datas)
 
 
-
-          <div class="col-md-3" >
-            <form method="POST" action="{{route('CalculheureMois')}}">
-              @csrf
-            <!-- general form elements disabled -->
-            <div class="card card-dark">
-              <div class="card-header col-md-10">
-                <h3 class="card-title">{{$datas->Nom}}</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <form role="form">
-                  <div class="row">
-                      <section class="content">
-                          <div class="container-fluid">
-
-                            <!-- Timelime example  -->
-                            <div class="row">
-                              <div class="col-md-12">
-                                <!-- The time line -->
-                                <div class="timeline">
-                                  <!-- timeline time label -->
-                                  <div class="time-label">
-                                    <span class="bg-red">{{$datas->agent}}</span>
-                                  </div>
-                                  <!-- /.timeline-label -->
-                                  <!-- timeline item -->
-                                  <div>
-                                    <i class="fas fa-envelope bg-blue"></i>
-                                    <div class="timeline-item">
-                                        <div class="timeline-body">
-                                            validation centre   <a href="#" class="btn btn-sm bg-success">√</a>
-                                        </div>
-
-                                    </div>
-                                  </div>
-                                  <!-- END timeline item -->
-                                  <!-- timeline item -->
-                                  <div>
-                                    <i class="fas fa-user bg-green"></i>
-                                    <i class="nav-icon fas fa-check-double bg-grey"></i>
-                                    <div class="timeline-item">
-                                        <div class="timeline-body">
-                                      validation direction<a href="#" class="btn btn-sm bg-success">√</a>
-                                        </div>
-
-                                    </div>
-                                  </div>
-
-                                  <div>
-                                    <i class="fas fa-user bg-green"></i>
-                                    <i class="nav-icon fas fa-check-double bg-grey"></i>
-                                    <div class="timeline-item">
-                                        <div class="timeline-body">
-                                      validation secteur  <a href="#" class="btn btn-sm bg-success">√</a>
-                                        </div>
-
-                                    </div>
-                                  </div>
-                                  <!-- END timeline item -->
-                                  <!-- timeline item -->
-                                  <div>
-
-                                    <i class="nav-icon far fa-calendar-check bg-green"" ></i>
-                                    <div class="timeline-item">
-                                        <div class="timeline-body">
-                                      Saisie   <a href="#" class="btn btn-sm bg-success">√</a>
-                                        </div>
-
-                                    </div>
-                                  </div>
-                                  <!-- END timeline item -->
-                                  <!-- timeline item -->
-                                  <div>
-                                    <i class="nav-icon fas fa-user-plus bg-yellow"></i>
-                                    <div class="timeline-item">
-                                        <div class="timeline-body">
-                                      Commande  <a href="#" class="btn btn-sm bg-success">√</a>
-                                        </div>
-
-                                    </div>
-                                  </div>
-                                  <!-- END timeline item -->
-                                  <!-- timeline time label -->
-
-                              </div>
-                              <!-- /.col -->
+                        @if ($datas->statut==3)
+                        <div class="col-md-3" >
+                        <form method="POST" action="{{route('CalculheureMois')}}">
+                            @csrf
+                        <!-- general form elements disabled -->
+                        <div class="card card-dark">
+                            <div class="card-header col-md-10">
+                            <h3 class="card-title">{{$datas->Nom}}</h3>
                             </div>
-                          </div>
-                          <!-- /.timeline -->
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                            <form role="form">
+                                <div class="row">
+                                    <section class="content">
+                                        <div class="container-fluid">
 
-                        </section>
-                  </div>
+                                        <!-- Timelime example  -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                            <!-- The time line -->
+                                            <div class="timeline">
+                                                <!-- timeline time label -->
+                                                <div class="time-label">
+                                                <span class="bg-red">{{$datas->agent}}</span>
+                                                </div>
+                                                <!-- /.timeline-label -->
+                                                <!-- timeline item -->
+                                                <div>
+                                                <i class="fas fa-envelope bg-blue"></i>
+                                                <div class="timeline-item">
+                                                    <div class="timeline-body">
+                                                        validation centre   <a href="#" class="btn btn-sm bg-danger">X</a>
+                                                    </div>
 
-              </div>
+                                                </div>
+                                                </div>
+                                                <!-- END timeline item -->
+                                                <!-- timeline item -->
+                                                <div>
+                                                    <i class="fas fa-user bg-green"></i>
+                                                    <i class="nav-icon fas fa-check-double bg-grey"></i>
+                                                    <div class="timeline-item">
+                                                        <div class="timeline-body">
+                                                    validation direction<a href="#" class="btn btn-sm bg-success">√</a>
+                                                        </div>
 
-            </div>
-          </form>
-          </div>
-          @endif
+                                                    </div>
+                                                </div>
 
-    @if ($datas->statut==3)
+                                                <div>
+                                                <i class="fas fa-user bg-green"></i>
+                                                <i class="nav-icon fas fa-check-double bg-grey"></i>
+                                                <div class="timeline-item">
+                                                    <div class="timeline-body">
+                                                    validation secteur  <a href="#" class="btn btn-sm bg-success">√</a>
+                                                    </div>
 
+                                                </div>
+                                                </div>
+                                                <!-- END timeline item -->
+                                                <!-- timeline item -->
+                                                <div>
 
+                                                <i class="nav-icon far fa-calendar-check bg-green"" ></i>
+                                                <div class="timeline-item">
+                                                    <div class="timeline-body">
+                                                    Saisie   <a href="#" class="btn btn-sm bg-success">√</a>
+                                                    </div>
 
-    <div class="col-md-3" >
-      <form method="POST" action="{{route('CalculheureMois')}}">
-        @csrf
-      <!-- general form elements disabled -->
-      <div class="card card-dark">
-        <div class="card-header col-md-10">
-          <h3 class="card-title">{{$datas->Nom}}</h3>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-          <form role="form">
-            <div class="row">
-                <section class="content">
-                    <div class="container-fluid">
+                                                </div>
+                                                </div>
+                                                <!-- END timeline item -->
+                                                <!-- timeline item -->
+                                                <div>
+                                                <i class="nav-icon fas fa-user-plus bg-yellow"></i>
+                                                <div class="timeline-item">
+                                                    <div class="timeline-body">
+                                                    Commande  <a href="#" class="btn btn-sm bg-success">√</a>
+                                                    </div>
 
-                      <!-- Timelime example  -->
-                      <div class="row">
-                        <div class="col-md-12">
-                          <!-- The time line -->
-                          <div class="timeline">
-                            <!-- timeline time label -->
-                            <div class="time-label">
-                              <span class="bg-red">{{$datas->agent}}</span>
-                            </div>
-                            <!-- /.timeline-label -->
-                            <!-- timeline item -->
-                            <div>
-                              <i class="fas fa-envelope bg-blue"></i>
-                              <div class="timeline-item">
-                                  <div class="timeline-body">
-                                      validation centre   <a href="#" class="btn btn-sm bg-success">X</a>
-                                  </div>
+                                                </div>
+                                                </div>
+                                                <!-- END timeline item -->
+                                                <!-- timeline time label -->
 
-                              </div>
-                            </div>
-                            <!-- END timeline item -->
-                            <!-- timeline item -->
-                            <div>
-                                <i class="fas fa-user bg-green"></i>
-                                <i class="nav-icon fas fa-check-double bg-grey"></i>
-                                <div class="timeline-item">
-                                    <div class="timeline-body">
-                                  validation direction<a href="#" class="btn btn-sm bg-success">√</a>
-                                    </div>
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        </div>
+                                        <!-- /.timeline -->
 
+                                    </section>
                                 </div>
-                              </div>
 
-                            <div>
-                              <i class="fas fa-user bg-green"></i>
-                              <i class="nav-icon fas fa-check-double bg-grey"></i>
-                              <div class="timeline-item">
-                                  <div class="timeline-body">
-                                validation secteur  <a href="#" class="btn btn-sm bg-success">√</a>
-                                  </div>
-
-                              </div>
                             </div>
-                            <!-- END timeline item -->
-                            <!-- timeline item -->
-                            <div>
-
-                              <i class="nav-icon far fa-calendar-check bg-green"" ></i>
-                              <div class="timeline-item">
-                                  <div class="timeline-body">
-                                Saisie   <a href="#" class="btn btn-sm bg-success">√</a>
-                                  </div>
-
-                              </div>
-                            </div>
-                            <!-- END timeline item -->
-                            <!-- timeline item -->
-                            <div>
-                              <i class="nav-icon fas fa-user-plus bg-yellow"></i>
-                              <div class="timeline-item">
-                                  <div class="timeline-body">
-                                Commande  <a href="#" class="btn btn-sm bg-success">√</a>
-                                  </div>
-
-                              </div>
-                            </div>
-                            <!-- END timeline item -->
-                            <!-- timeline time label -->
 
                         </div>
-                        <!-- /.col -->
-                      </div>
-                    </div>
-                    <!-- /.timeline -->
-
-                  </section>
-            </div>
-
-        </div>
-
-      </div>
-    </form>
-    </div>
-    @endif
-    @if ($datas->statut==2)
+                        </form>
+                        </div>
+                        @endif
+                        @if ($datas->statut==2)
 
 
 
-    <div class="col-md-3" >
-      <form method="POST" action="{{route('CalculheureMois')}}">
-        @csrf
-      <!-- general form elements disabled -->
-      <div class="card card-dark">
-        <div class="card-header col-md-10">
-          <h3 class="card-title">{{$datas->Nom}}</h3>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-          <form role="form">
-            <div class="row">
-                <section class="content">
-                    <div class="container-fluid">
-
-                      <!-- Timelime example  -->
-                      <div class="row">
-                        <div class="col-md-12">
-                          <!-- The time line -->
-                          <div class="timeline">
-                            <!-- timeline time label -->
-                            <div class="time-label">
-                              <span class="bg-red">{{$datas->agent}}</span>
+                        <div class="col-md-3" >
+                        <form method="POST" action="{{route('CalculheureMois')}}">
+                            @csrf
+                        <!-- general form elements disabled -->
+                        <div class="card card-dark">
+                            <div class="card-header col-md-10">
+                            <h3 class="card-title">{{$datas->Nom}}</h3>
                             </div>
-                            <!-- /.timeline-label -->
-                            <!-- timeline item -->
-                            <div>
-                              <i class="fas fa-envelope bg-blue"></i>
-                              <div class="timeline-item">
-                                  <div class="timeline-body">
-                                      validation centre   <a href="#" class="btn btn-sm bg-danger">X</a>
-                                  </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                            <form role="form">
+                                <div class="row">
+                                    <section class="content">
+                                        <div class="container-fluid">
 
-                              </div>
-                            </div>
-                            <!-- END timeline item -->
-                            <!-- timeline item -->
-                            <div>
-                                <i class="fas fa-user bg-green"></i>
-                                <i class="nav-icon fas fa-check-double bg-grey"></i>
-                                <div class="timeline-item">
-                                    <div class="timeline-body">
-                                  validation direction <a href="#" class="btn btn-sm bg-danger">X</a>
-                                    </div>
+                                        <!-- Timelime example  -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                            <!-- The time line -->
+                                            <div class="timeline">
+                                                <!-- timeline time label -->
+                                                <div class="time-label">
+                                                <span class="bg-red">{{$datas->agent}}</span>
+                                                </div>
+                                                <!-- /.timeline-label -->
+                                                <!-- timeline item -->
+                                                <div>
+                                                <i class="fas fa-envelope bg-blue"></i>
+                                                <div class="timeline-item">
+                                                    <div class="timeline-body">
+                                                        validation centre   <a href="#" class="btn btn-sm bg-danger">X</a>
+                                                    </div>
 
+                                                </div>
+                                                </div>
+                                                <!-- END timeline item -->
+                                                <!-- timeline item -->
+                                                <div>
+                                                    <i class="fas fa-user bg-green"></i>
+                                                    <i class="nav-icon fas fa-check-double bg-grey"></i>
+                                                    <div class="timeline-item">
+                                                        <div class="timeline-body">
+                                                    validation direction <a href="#" class="btn btn-sm bg-danger">X</a>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                <i class="fas fa-user bg-green"></i>
+                                                <i class="nav-icon fas fa-check-double bg-black"></i>
+                                                <div class="timeline-item">
+                                                    <div class="timeline-body">
+                                                    validation secteur <a href="#" class="btn btn-sm bg-success">√</a>
+                                                    </div>
+
+                                                </div>
+                                                </div>
+                                                <!-- END timeline item -->
+                                                <!-- timeline item -->
+                                                <div>
+
+                                                <i class="nav-icon far fa-calendar-check bg-green"" ></i>
+                                                <div class="timeline-item">
+                                                    <div class="timeline-body">
+                                                    Saisie  <a href="#" class="btn btn-sm bg-success">√</a>
+                                                    </div>
+
+                                                </div>
+                                                </div>
+                                                <!-- END timeline item -->
+                                                <!-- timeline item -->
+                                                <div>
+                                                <i class="nav-icon fas fa-user-plus bg-yellow"></i>
+                                                <div class="timeline-item">
+                                                    <div class="timeline-body">
+                                                    Commande   <a href="#" class="btn btn-sm bg-success">√</a>
+                                                    </div>
+
+                                                </div>
+                                                </div>
+                                                <!-- END timeline item -->
+                                                <!-- timeline time label -->
+
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        </div>
+                                        <!-- /.timeline -->
+
+                                    </section>
                                 </div>
-                              </div>
-                            <div>
-                              <i class="fas fa-user bg-green"></i>
-                              <i class="nav-icon fas fa-check-double bg-black"></i>
-                              <div class="timeline-item">
-                                  <div class="timeline-body">
-                                validation secteur <a href="#" class="btn btn-sm bg-success">√</a>
-                                  </div>
 
-                              </div>
                             </div>
-                            <!-- END timeline item -->
-                            <!-- timeline item -->
-                            <div>
-
-                              <i class="nav-icon far fa-calendar-check bg-green"" ></i>
-                              <div class="timeline-item">
-                                  <div class="timeline-body">
-                                Saisie  <a href="#" class="btn btn-sm bg-success">√</a>
-                                  </div>
-
-                              </div>
-                            </div>
-                            <!-- END timeline item -->
-                            <!-- timeline item -->
-                            <div>
-                              <i class="nav-icon fas fa-user-plus bg-yellow"></i>
-                              <div class="timeline-item">
-                                  <div class="timeline-body">
-                                Commande   <a href="#" class="btn btn-sm bg-success">√</a>
-                                  </div>
-
-                              </div>
-                            </div>
-                            <!-- END timeline item -->
-                            <!-- timeline time label -->
 
                         </div>
-                        <!-- /.col -->
-                      </div>
-                    </div>
-                    <!-- /.timeline -->
-
-                  </section>
-            </div>
-
-        </div>
-
-      </div>
-    </form>
-    </div>
-    @endif
-    @if ($datas->statut==1)
+                        </form>
+                        </div>
+                        @endif
+                        @if ($datas->statut==1)
 
 
 
-    <div class="col-md-3" >
-      <form method="POST" action="{{route('CalculheureMois')}}">
-        @csrf
-      <!-- general form elements disabled -->
-      <div class="card card-dark">
-        <div class="card-header col-md-10">
-          <h3 class="card-title">{{$datas->Nom}}</h3>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-          <form role="form">
-            <div class="row">
-                <section class="content">
-                    <div class="container-fluid">
-
-                      <!-- Timelime example  -->
-                      <div class="row">
-                        <div class="col-md-12">
-                          <!-- The time line -->
-                          <div class="timeline">
-                            <!-- timeline time label -->
-                            <div class="time-label">
-                              <span class="bg-red">{{$datas->agent}}</span>
+                        <div class="col-md-3" >
+                        <form method="POST" action="{{route('CalculheureMois')}}">
+                            @csrf
+                        <!-- general form elements disabled -->
+                        <div class="card card-dark">
+                            <div class="card-header col-md-10">
+                            <h3 class="card-title">{{$datas->Nom}}</h3>
                             </div>
-                            <!-- /.timeline-label -->
-                            <!-- timeline item -->
-                            <div>
-                              <i class="fas fa-envelope bg-blue"></i>
-                              <div class="timeline-item">
-                                  <div class="timeline-body">
-                                      validation centre  <a href="#" class="btn btn-sm bg-danger">X</a>
-                                  </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                            <form role="form">
+                                <div class="row">
+                                    <section class="content">
+                                        <div class="container-fluid">
 
-                              </div>
-                            </div>
-                            <!-- END timeline item -->
-                            <!-- timeline item -->
-                            <div>
-                              <i class="fas fa-user bg-green"></i>
-                              <i class="nav-icon fas fa-check-double bg-grey"></i>
-                              <div class="timeline-item">
-                                  <div class="timeline-body">
-                                validation direction      <a href="#" class="btn btn-sm bg-danger">X</a>
-                                  </div>
+                                        <!-- Timelime example  -->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                            <!-- The time line -->
+                                            <div class="timeline">
+                                                <!-- timeline time label -->
+                                                <div class="time-label">
+                                                <span class="bg-red">{{$datas->agent}}</span>
+                                                </div>
+                                                <!-- /.timeline-label -->
+                                                <!-- timeline item -->
+                                                <div>
+                                                <i class="fas fa-envelope bg-blue"></i>
+                                                <div class="timeline-item">
+                                                    <div class="timeline-body">
+                                                        validation centre  <a href="#" class="btn btn-sm bg-danger">X</a>
+                                                    </div>
 
-                              </div>
-                            </div>
-                            <!-- END timeline item -->
-                            <!-- timeline item -->
-                            <div>
-                                <i class="fas fa-user bg-green"></i>
-                                <i class="nav-icon fas fa-check-double bg-grey"></i>
-                                <div class="timeline-item">
-                                    <div class="timeline-body">
-                                  validation secteur  <a href="#" class="btn btn-sm bg-danger">X</a>
-                                    </div>
+                                                </div>
+                                                </div>
+                                                <!-- END timeline item -->
+                                                <!-- timeline item -->
+                                                <div>
+                                                <i class="fas fa-user bg-green"></i>
+                                                <i class="nav-icon fas fa-check-double bg-grey"></i>
+                                                <div class="timeline-item">
+                                                    <div class="timeline-body">
+                                                    validation direction      <a href="#" class="btn btn-sm bg-danger">X</a>
+                                                    </div>
 
+                                                </div>
+                                                </div>
+                                                <!-- END timeline item -->
+                                                <!-- timeline item -->
+                                                <div>
+                                                    <i class="fas fa-user bg-green"></i>
+                                                    <i class="nav-icon fas fa-check-double bg-grey"></i>
+                                                    <div class="timeline-item">
+                                                        <div class="timeline-body">
+                                                    validation secteur  <a href="#" class="btn btn-sm bg-danger">X</a>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <!-- END timeline item -->
+                                                <!-- timeline item -->
+                                                <div>
+
+                                                <i class="nav-icon far fa-calendar-check bg-green"" ></i>
+                                                <div class="timeline-item">
+                                                    <div class="timeline-body">
+                                                    Saisie    <a href="#" class="btn btn-sm bg-success">√</a>
+                                                    </div>
+
+                                                </div>
+                                                </div>
+                                                <!-- END timeline item -->
+                                                <!-- timeline item -->
+                                                <div>
+                                                <i class="nav-icon fas fa-user-plus bg-yellow"></i>
+                                                <div class="timeline-item">
+                                                    <div class="timeline-body">
+                                                    Commande   <a href="#" class="btn btn-sm bg-success">√</a>
+                                                    </div>
+
+                                                </div>
+                                                </div>
+                                                <!-- END timeline item -->
+                                                <!-- timeline time label -->
+
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        </div>
+                                        <!-- /.timeline -->
+
+                                    </section>
                                 </div>
-                              </div>
-                              <!-- END timeline item -->
-                              <!-- timeline item -->
-                            <div>
 
-                              <i class="nav-icon far fa-calendar-check bg-green"" ></i>
-                              <div class="timeline-item">
-                                  <div class="timeline-body">
-                                Saisie    <a href="#" class="btn btn-sm bg-success">√</a>
-                                  </div>
-
-                              </div>
                             </div>
-                            <!-- END timeline item -->
-                            <!-- timeline item -->
-                            <div>
-                              <i class="nav-icon fas fa-user-plus bg-yellow"></i>
-                              <div class="timeline-item">
-                                  <div class="timeline-body">
-                                Commande   <a href="#" class="btn btn-sm bg-success">√</a>
-                                  </div>
-
-                              </div>
-                            </div>
-                            <!-- END timeline item -->
-                            <!-- timeline time label -->
 
                         </div>
-                        <!-- /.col -->
-                      </div>
-                    </div>
-                    <!-- /.timeline -->
-
-                  </section>
-            </div>
-
-        </div>
-
-      </div>
-    </form>
-    </div>
-    @endif
-          @endforeach
-                                                                @break
-                                                                @endif
-                            @endif
-         @endforeach
-@endsection
+                        </form>
+                        </div>
+                        @endif
+                            @endforeach
+                                                                                    @break
+                                                                                    @endif
+                                                @endif
+                            @endforeach
+                    @endsection

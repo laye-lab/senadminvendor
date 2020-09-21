@@ -96,7 +96,6 @@ class HomeCommandeController extends Controller
             ->distinct('Affectation')
             ->get();
 
-
             return view('homeCommande')->with([
                 'servicedr'=> $servicedr,
                 'agent'=> $agent,

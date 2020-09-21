@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  @livewireStyles
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 
@@ -172,7 +173,8 @@
 
                 @break
             @case('n+2')
-                                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                                     <!-- Add icons to the links using the .nav-icon class
                                         with font-awesome or any other icon font library -->
                                         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -311,6 +313,23 @@
                         </p>
                     </a>
                     </li>
+                    <li class="nav-item has-treeview menu-open">
+                        <a  href="{{route('Dashbord')}}" href="#" class="nav-link">
+                            <i class="fas fa-route"></i>
+                            <p>
+                            Tableau de bord
+                            </p>
+                        </a>
+                     </li>
+
+                     <li class="nav-item has-treeview menu-open">
+                        <a  href="{{route('Affectationindex')}}" href="#" class="nav-link">
+                            <i class="fas fa-luggage-cart"></i>
+                            <p>
+                            Affectation
+                            </p>
+                        </a>
+                     </li>
             </ul>
 
                 @break
@@ -425,4 +444,5 @@
 <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
+@livewireScripts
 

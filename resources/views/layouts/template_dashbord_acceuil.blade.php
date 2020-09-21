@@ -311,6 +311,22 @@
                         </p>
                     </a>
                     </li>
+                    <li class="nav-item has-treeview menu-open">
+                        <a  href="{{route('Dashbord')}}" href="#" class="nav-link">
+                            <i class="fas fa-route"></i>
+                                                        <p>
+                            Tableau de bord
+                            </p>
+                        </a>
+                        </li>
+                        <li class="nav-item has-treeview menu-open">
+                            <a  href="{{route('Affectationindex')}}" href="#" class="nav-link">
+                                <i class="fas fa-luggage-cart"></i>
+                                <p>
+                                Affectation
+                                </p>
+                            </a>
+                         </li>
             </ul>
 
                 @break

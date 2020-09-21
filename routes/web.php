@@ -26,6 +26,26 @@ Auth::routes();
 
         Route::get('/home', 'AcceuilController@index')->name('Acceuil');
 
+        Route::any('/Dashbord', [
+            'uses' =>'DashbordController@index',
+            'as' => 'Dashbord',
+            'middleware' => 'roles',
+            'roles' => ['drh']
+        ]);
+
+        Route::any('/Affectation', [
+            'uses' =>'AffectationController@showForm',
+            'as' => 'Affectation',
+            'middleware' => 'roles',
+            'roles' => ['drh']
+        ]);
+        Route::get('/Affectationindex', [
+            'uses' =>'AffectationController@index',
+            'as' => 'Affectationindex',
+            'middleware' => 'roles',
+            'roles' => ['drh']
+        ]);
+
         Route::get('/homeCommandeindex', [
             'uses' =>'HomeCommandeController@index',
             'as' => 'homeCommandeindex',

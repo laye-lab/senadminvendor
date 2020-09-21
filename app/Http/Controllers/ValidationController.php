@@ -16,7 +16,7 @@ class ValidationController extends Controller
     public function index()
 
     {
-        $service=DB::table('Affectation')
+        $service=DB::table('affectation')
             ->join('agent','agent.Matricule_Agent','=','affectation.agentMatricule_Agent')
             ->select('Matricule_agent','Nom_Agent','Fonction','Statut','Libelle_Affectation','Direction','Etablissemt_nom')
             ->distinct('Matricule_agent')
@@ -46,9 +46,8 @@ class ValidationController extends Controller
             ->get();
             $heurre_a_faire=DB::table('agent_Heures_supp_a_faire')
             ->join('agent','agent.Matricule_Agent','=','agent_Heures_supp_a_faire.agentMatricule_Agent')
-            ->join('Etablissement','Etablissement.agentMatricule_Agent','=','agent_Heures_supp_a_faire.agentMatricule_Agent')
             ->join('heures_supp','heures_supp.id_heure_a_faire','=','agent_Heures_supp_a_faire.Heures_supp_a_faireID')
-            ->select('agent.Matricule_agent','Nom_Agent','Etablissement.nom','Date_Heure','heure_debut','heure_fin','travaux_effectuer','observations','heures_supp.id','heures_supp.Statut','id_heure_a_faire')
+            ->select('agent.Matricule_agent','Nom_Agent','Etablissement','Date_Heure','heure_debut','heure_fin','travaux_effectuer','observations','heures_supp.id','heures_supp.Statut','id_heure_a_faire')
             ->get();
 
             return view('Validation')->with([

@@ -63,7 +63,7 @@ class CommandeController extends Controller
                 'agent_etablissement'=>$agent_etablissement]
             );
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -72,7 +72,7 @@ class CommandeController extends Controller
      */
     public function Create()
     {
-      
+
     }
 
     /**
@@ -82,8 +82,8 @@ class CommandeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCommandeRequest $request)
-    { 
-       
+    {
+        $user=auth()->user()->id;
         $servicedr=request('service');
         $role_account=DB::table('Role_Account')
             ->join('users','users.id' ,'=', 'Role_Account.AccountID')
@@ -91,16 +91,42 @@ class CommandeController extends Controller
             ->join('agent','agent.Matricule_Agent' ,'=','users.id')
             ->select('Matricule_agent','Statut','Direction','Role.Nom','Nom_Agent','etablissement')
             ->get();
-            
+
             $service=DB::table('Affectation')
             ->select('Libelle_Affectation','Etablissemt_nom','agentMatricule_Agent')
             ->distinct('Libelle_Affectation')
             ->select('Libelle_Affectation','Etablissemt_nom')
             ->get();
-            $affectation=DB::table('Affectation')
-            ->select('Libelle_Affectation','Etablissemt_nom','agentMatricule_Agent')
-            ->get();
-  
+
+
+            $etablissement_user=DB::table('agent')
+            ->select('etablissement')
+            ->where('agent.Matricule_Agent', '=',$user)
+            ->distinct('Matricule_agent')
+            ->first();
+            $etablissement_direction=DB::table('agent')
+            ->select('Direction')
+            ->where('agent.Matricule_Agent', '=',$user)
+            ->distinct('Matricule_agent')
+            ->first();
+
+            if ($etablissement_user->etablissement === "Centre de Hann"){
+
+             $Affectation=DB::table('agent')
+             ->select('Affectation')
+             ->where('agent.Direction', '=',$etablissement_direction->Direction)
+             ->distinct('Affectation')
+             ->get();
+            }
+            else{
+             $Affectation=DB::table('agent')
+             ->select('Affectation')
+             ->where('agent.Etablissement', '=',$etablissement_user->etablissement)
+             ->distinct('Affectation')
+             ->get();
+            }
+
+
             $agent_etablissement=DB::table('agent')
             ->select('agent.Matricule_agent','Nom_Agent','Fonction','agent.Statut'
             ,'Direction','Etablissement','Affectation')
@@ -114,7 +140,7 @@ class CommandeController extends Controller
         $Heures_supp_a_faire->nbr_heure =request('nbr_heure');
         $Heures_supp_a_faire->travaux_effectuer =request('travaux_effectuer');
         $Heures_supp_a_faire->Observations =request('Observations');
-       
+
         $Heures_supp_a_faire->save();
 
         $Heures_supp=DB::table('Heures_supp_a_faire')
@@ -131,30 +157,30 @@ class CommandeController extends Controller
         $Agent_Heures_supp_a_faire->Heures_supp_a_faireID =$Heures_supp->ID;
 
         $Agent_Heures_supp_a_faire->save();
-        session()->flash('notif', 'Heure supplémentaire enregistré!');
+        session()->flash('notif', 'Commande enregistrée!');
         if (null ==request('commandeur') ){
 
             return view('homeCommandeindex')->with([
                 'role_account'=> $role_account,
                 'service'=> $service,
-                'affectation'=> $affectation,
+                'Affectation'=> $Affectation,
                 'role_account'=> $role_account,
                 'servicedr'=> $servicedr
-    
+
             ]
             );
-    
+
         }
         return view('homeCommandeindex')->with([
             'role_account'=> $role_account,
             'service'=> $service,
-            'affectation'=> $affectation,
+            'Affectation'=> $Affectation,
             'role_account'=> $role_account,
             'servicedr'=> $servicedr
 
         ]
         );
-    
+
     }
 
     /**

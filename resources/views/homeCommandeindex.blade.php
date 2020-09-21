@@ -9,7 +9,12 @@
 <center>
 <section class="content" >
   <div class="container-fluid">
-
+    @if ($message = Session::get('notif'))
+    <div class="alert alert-success alert-block col-md-6">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+    </div>
+    @endif
     <div class="row" style="position:relative; top:100px; left:30%;">
       <!-- left column -->
       <div class="col-md-6" >

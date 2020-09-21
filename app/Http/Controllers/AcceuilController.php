@@ -86,9 +86,26 @@ class AcceuilController extends Controller
             )
             ->groupBy('Affectations')
             ->get();
+            $data_drh= DB::table('heures_supp')
+            ->join('agent','agent.Matricule_Agent' ,'=','Agent_Matricule_Agent')
+            ->select(
+                DB::raw('YEAR(Date_Heure) as year'),
+                DB::raw('MONTH(Date_Heure) as month'),
+                DB::raw('SUM(total_taux_15) as sum15'),
+                DB::raw('SUM(total_taux_40) as sum40'),
+                DB::raw('SUM(total_taux_60) as sum60'),
+                DB::raw('SUM(total_taux_100) as sum100'),
+                DB::raw('Nom_Agent as Nom'),
+                DB::raw('SUM(total_heures_saisie) as total'),
+                DB::raw('(Agent_Matricule_Agent) as agent'),
+                DB::raw('(heures_supp.Statut) as statut'))
+               ->groupBy('year','month','agent','statut')
+               ->get();
 
+        $user=auth()->user()->id;
         $current_month = date('m');
         $current_year = date("Y");
+
         $borderColors = [
             "rgba(255, 99, 132, 1.0)",
             "rgba(22,160,133, 1.0)",
@@ -115,10 +132,20 @@ class AcceuilController extends Controller
 
         ];
 
+        $etablissement_dr =DB::table('agent')->select('etablissement')->where('Matricule_Agent', '=',  $user)->first();
+        $total_current_month =DB::table('heures_supp')->select('total_heures_saisie')
+        ->whereMonth('Date_Heure', '=',$current_month)->sum('total_heures_saisie');
 
-        $total_current_month =DB::table('heures_supp')->select('total_heures_saisie')->whereMonth('Date_Heure', '=',$current_month)->sum('total_heures_saisie');
+        $total_current_month_dr=DB::table('heures_supp')->join('agent','agent.Matricule_Agent' ,'=','heures_supp.Agent_Matricule_Agent')
+        ->where('Etablissement', '=',$etablissement_dr->etablissement)->whereMonth('Date_Heure', '=',$current_month)->sum('total_heures_saisie');
 
-        $total_current_year =DB::table('heures_supp')->select('total_heures_saisie')->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
+
+        $total_current_year =DB::table('heures_supp')->select('total_heures_saisie')
+        ->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
+
+        $total_current_year_dr =DB::table('heures_supp')->join('agent','agent.Matricule_Agent' ,'=','heures_supp.Agent_Matricule_Agent')
+        ->where('Etablissement', '=',$etablissement_dr->etablissement)->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
+
 
         $total_taux_15_year =DB::table('heures_supp')->select('total_taux_15')->whereYear('Date_Heure', '=',$current_year)->sum('total_taux_15');
         $total_taux_40_year =DB::table('heures_supp')->select('total_taux_40')->whereYear('Date_Heure', '=',$current_year)->sum('total_taux_40');
@@ -134,29 +161,30 @@ class AcceuilController extends Controller
 
 
 
-        $Janvier=DB::table('heures_supp')->select('total_heures_saisie')->whereMonth('Date_Heure', '=', 1)->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
+        $Janvier=DB::table('heures_supp')->join('agent','agent.Matricule_Agent' ,'=','heures_supp.Agent_Matricule_Agent')->whereMonth('Date_Heure', '=', 1)->where('Etablissement', '<>',"Centre de Hann")->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
 
-        $Fevrier=DB::table('heures_supp')->select('total_heures_saisie')->whereMonth('Date_Heure', '=', 2)->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
+        $Fevrier=DB::table('heures_supp')->join('agent','agent.Matricule_Agent' ,'=','heures_supp.Agent_Matricule_Agent')->whereMonth('Date_Heure', '=', 2)->where('Etablissement', '<>',"Centre de Hann")->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
 
-        $Mars=DB::table('heures_supp')->select('total_heures_saisie')->whereMonth('Date_Heure', '=', 3)->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
 
-        $Avril=DB::table('heures_supp')->select('total_heures_saisie')->whereMonth('Date_Heure', '=', 4)->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
+        $Mars=DB::table('heures_supp')->join('agent','agent.Matricule_Agent' ,'=','heures_supp.Agent_Matricule_Agent')->whereMonth('Date_Heure', '=', 3)->where('Etablissement', '<>',"Centre de Hann")->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
 
-        $Mai=DB::table('heures_supp')->select('total_heures_saisie')->whereMonth('Date_Heure', '=', 5)->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
+        $Avril=DB::table('heures_supp')->join('agent','agent.Matricule_Agent' ,'=','heures_supp.Agent_Matricule_Agent')->whereMonth('Date_Heure', '=', 4)->where('Etablissement', '<>',"Centre de Hann")->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
 
-        $Juin=DB::table('heures_supp')->select('total_heures_saisie')->whereMonth('Date_Heure', '=', 6)->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
+        $Mai=DB::table('heures_supp')->join('agent','agent.Matricule_Agent' ,'=','heures_supp.Agent_Matricule_Agent')->whereMonth('Date_Heure', '=', 5)->where('Etablissement', '<>',"Centre de Hann")->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
 
-        $Juillet=DB::table('heures_supp')->select('total_heures_saisie')->whereMonth('Date_Heure', '=', 7)->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
+        $Juin=DB::table('heures_supp')->join('agent','agent.Matricule_Agent' ,'=','heures_supp.Agent_Matricule_Agent')->whereMonth('Date_Heure', '=', 6)->where('Etablissement', '<>',"Centre de Hann")->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
 
-        $Aout=DB::table('heures_supp')->select('total_heures_saisie')->whereMonth('Date_Heure', '=', 8)->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
+        $Juillet=DB::table('heures_supp')->join('agent','agent.Matricule_Agent' ,'=','heures_supp.Agent_Matricule_Agent')->whereMonth('Date_Heure', '=', 7)->where('Etablissement', '<>',"Centre de Hann")->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
 
-        $Septembre=DB::table('heures_supp')->select('total_heures_saisie')->whereMonth('Date_Heure', '=', 9)->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
+        $Aout=DB::table('heures_supp')->join('agent','agent.Matricule_Agent' ,'=','heures_supp.Agent_Matricule_Agent')->whereMonth('Date_Heure', '=', 8)->where('Etablissement', '<>',"Centre de Hann")->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
 
-        $Octobre=DB::table('heures_supp')->select('total_heures_saisie')->whereMonth('Date_Heure', '=', 10)->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
+        $Septembre=DB::table('heures_supp')->join('agent','agent.Matricule_Agent' ,'=','heures_supp.Agent_Matricule_Agent')->whereMonth('Date_Heure', '=', 9)->where('Etablissement', '<>',"Centre de Hann")->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
 
-        $Novembre=DB::table('heures_supp')->select('total_heures_saisie')->whereMonth('Date_Heure', '=', 11)->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
+        $Octobre=DB::table('heures_supp')->join('agent','agent.Matricule_Agent' ,'=','heures_supp.Agent_Matricule_Agent')->whereMonth('Date_Heure', '=', 10)->where('Etablissement', '<>',"Centre de Hann")->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
 
-        $Decembre=DB::table('heures_supp')->select('total_heures_saisie')->whereMonth('Date_Heure', '=', 12)->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
+        $Novembre=DB::table('heures_supp')->join('agent','agent.Matricule_Agent' ,'=','heures_supp.Agent_Matricule_Agent')->whereMonth('Date_Heure', '=', 11)->where('Etablissement', '<>',"Centre de Hann")->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
+
+        $Decembre=DB::table('heures_supp')->join('agent','agent.Matricule_Agent' ,'=','heures_supp.Agent_Matricule_Agent')->whereMonth('Date_Heure', '=', 12)->where('Etablissement', '<>',"Centre de Hann")->whereYear('Date_Heure', '=',$current_year)->sum('total_heures_saisie');
 
 
 
@@ -203,8 +231,11 @@ class AcceuilController extends Controller
                 'usersChartbandetablissement' => $usersChartbandetablissement,
                 'mois' => $mois,
                 'data' => $data,
+                'data_drh' => $data_drh,
                 'total_current_month' =>  $total_current_month,
-                'total_current_year' =>  $total_current_year ,
+                'total_current_month_dr' =>  $total_current_month_dr,
+                'total_current_year' =>  $total_current_year,
+                'total_current_year_dr' =>  $total_current_year_dr,
                 'role_account'=>$role_account]);
 }
 

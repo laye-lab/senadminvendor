@@ -29,6 +29,7 @@ class SaisieController extends Controller
     public function index(Request $request)
     {
 
+        $user=auth()->user()->id;
 
         $Date_debut=request('Date_debut');
 
@@ -144,7 +145,7 @@ class SaisieController extends Controller
 
     $servicedr=request('servicedr');
     $heuresaisie = DB::table('heures_supp')
-    ->where('heures_supp.id_heure_a_faire', '=',$id_heure)
+
     ->sum('total_heures_saisie');
     $role_account=DB::table('Role_Account')
     ->join('users','users.id' ,'=', 'Role_Account.AccountID')

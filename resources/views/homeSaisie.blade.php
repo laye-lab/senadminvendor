@@ -51,7 +51,6 @@
 
                             @foreach($agent_attribut as $agent_attributs)
 
-                                   @if($agent_attributs->n_plus_un ==Auth::user()->id )
 
                                       <td>
                                         {{$agent_attributs->Matricule_agent}}
@@ -106,7 +105,7 @@
 
                                   </tr>
 
-                                    @endif
+
 
                               @endforeach
 

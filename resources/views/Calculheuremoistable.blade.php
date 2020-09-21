@@ -15,7 +15,7 @@
     <tbody>
 
       @foreach ($data as  $datass)
-              @if($datass->month == $datas->month)
+
 
 
              <tr>
@@ -29,7 +29,7 @@
                       <td>{{$datass->sum100}}</td>
                       <td><button class=" btn btn-lg btn-danger">{{$datass->total}}</button></td>
              </tr>
-             @endif
+
        @endforeach
 
     </tbody>

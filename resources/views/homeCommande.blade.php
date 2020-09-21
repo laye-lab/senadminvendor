@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Liste des utilisateurs</h1>
+            <h1>Liste des agents</h1>
           </div>
 
         </div>
